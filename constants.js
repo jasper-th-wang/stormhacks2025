@@ -14,11 +14,13 @@
 // }
 //
 // For date use ISO string generated with date.toISOString().
-export const HISTORY_WORD_KEY = "word";
-export const HISTORY_SENTENCE_KEY = "sentence";
-export const HISTORY_PARAGRAPH_KEY = "paragraph";
-export const HISTORY_DEFINITION_KEY = "definition";
-export const HISTORY_INTERPRETATION_KEY = "interpretation";
-export const HISTORY_SOURCE_TITLE_KEY = "sourceTitle";
-export const HISTORY_SOURCE_RESOURCE_KEY = "sourceResource";
-export const HISTORY_DATE_KEY = "date";
+export const HISTORY_KEYS = {
+  WORD: "word",
+  SENTENCE: "sentence",
+  PARAGRAPH: "paragraph",
+  DEFINITION: "definition",
+  INTERPRETATION: "interpretation",
+  SOURCE_TITLE: "sourceTitle",
+  SOURCE_RESOURCE: "sourceResource",
+  DATE: "date",
+};
