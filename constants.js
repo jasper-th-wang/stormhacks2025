@@ -14,7 +14,8 @@
 // }
 //
 // For date use ISO string generated with date.toISOString().
-export const HISTORY_KEYS = {
+export const HISTORY_KEY = "history";
+export const ENTRY_KEYS = {
   WORD: "word",
   SENTENCE: "sentence",
   PARAGRAPH: "paragraph",
