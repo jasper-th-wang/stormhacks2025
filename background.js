@@ -5,7 +5,10 @@ import { addToHistory, makeEntry } from "./modules/history.js";
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log("Background received message:", message);
   if (message.action === "textSelected") {
-    // Send the response first, it'll timeout if we do it later
+    // Send a response
+    // NOTE: If we try to send this after processing it might
+    // fail; sendResponse enforces a calback lifetime of ~5 seconds—no
+    // way around it
     sendResponse({
       status: "ok",
       word: message.word,
