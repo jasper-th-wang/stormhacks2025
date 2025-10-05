@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sentence: message.sentence,
       },
       () => {
-        console.log("Text stored:", message.text);
+        console.log("Word stored:", message.word);
         sendResponse({
           status: "ok",
           word: message.word,
