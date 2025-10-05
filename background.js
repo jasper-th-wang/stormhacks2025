@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'textSelected') {
     chrome.storage.local.set({ selectedText: message.text }, () => {
       console.log('Text stored:', message.text);
-      sendResponse({ status: 'ok' });
+        sendResponse({ status: 'ok', textReceived: message.text});
     });
     return true; // Needed for async sendResponse
   }
