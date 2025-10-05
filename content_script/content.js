@@ -36,13 +36,13 @@ chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "showModal") {
     chrome.storage.local.get({ history: [] }, (result) => {
       const entry = result.history.filter(
-        (entry) => (entry.id = message.id),
+        (entry) => (entry.id === message.entryId),
       )[0];
       const lines = [
-        `word: ${lastEntry.word}`,
-        `definition: ${lastEntry.definition}`,
-        `interpretation: ${lastEntry.interpretation}`,
-        `example sentence: ${lastEntry.example}`,
+        `word: ${entry.word}`,
+        `definition: ${entry.definition}`,
+        `interpretation: ${entry.interpretation}`,
+        `example sentence: ${entry.example}`,
       ];
       alert(lines.join("\n\n"));
     });
