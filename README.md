@@ -16,8 +16,8 @@ interpretations of words in context
 ## StormHacks 2025
 
 Contextify was created in 24 hours during StormHacks 2025. Our team was
-**Add Kwami here**,
-**Add Simo here**,
+[**Kwami Aku-Dominguez**](https://ca.linkedin.com/in/kwami-aku-dominguez-7018a028b),
+[**Simo Becarevic**](https://github.com/simobecarevic),
 [**Jasper Wang**](https://github.com/jasper-th-wang/),
 and
 [**Matt Wiens**](https://github.com/mwiens91).
