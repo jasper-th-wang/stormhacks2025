@@ -1,4 +1,3 @@
-import { ENTRY_KEYS, HISTORY_KEY } from "../constants.js";
 import {
   addToHistory,
   getHistory,
@@ -30,7 +29,7 @@ const testHistoryNonSync = async () => {
   console.log(history2);
 
   // Remove the first entry
-  await removeFromHistory(testEntry1[ENTRY_KEYS.ID]);
+  await removeFromHistory(testEntry1.id);
   const history3 = await getHistory();
   console.log(history3);
 };
