@@ -16,7 +16,6 @@ let selectedText = "";
         }, (response) => {
             console.log('Message sent, response:', response);
         });
-        // confirmButton.remove();
         hideConfirmButton();
     });
 
