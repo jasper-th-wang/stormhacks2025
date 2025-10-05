@@ -30,6 +30,13 @@ handles UI and user interaction
 + [Google Gemini](https://ai.google.dev/) - processes definitions and
 interpretations of words in context
 
+## What's next for Contextify
+**Multilingual Support**: Translate definitions into the user's native language, making Contextify accessible to learners at any proficiency level.
+
+**Flashcard Export**: Export lookup history as flashcards with original context for spaced repetition and deeper learning.
+
+**Visual Learning Mode**: Display images for visual vocabulary like colors (mahogany, cerulean) and textures (limewashed, burnished)—because some words are easier shown than explained.
+
 ## StormHacks 2025
 
 Contextify was created in 24 hours during StormHacks 2025. Our team was
