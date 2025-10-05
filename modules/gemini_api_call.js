@@ -45,7 +45,31 @@ async function getWordDefinition(word, sentence, paragraph) {
 
         const data = await response.json();
         const text = data.candidates[0].content.parts[0].text;
-        return text;
+
+        // NOTE: We're expecting prompt to have the format:
+        //
+        // Word: ...
+        //
+        // Definition: ...
+        //
+        // Relation to context: ...
+        //
+        // Example sentence: ...
+        //
+        // Things might break if this isn't true!
+
+        // Grab the text proceeding each colon
+        const parts = text
+          .split("\n")
+          .map((line) => line.trim())
+          .filter((line) => line != "")
+          .map((line) => line.split(":").slice(1).join(":").trim());
+
+        return {
+          definition: parts[1],
+          interpretation: parts[2],
+          example: parts[3]
+        };
 
     } catch (error) {
         console.error("Error getting defintion:", error);
@@ -63,6 +87,6 @@ async function main() {
 
 }
 
-main();
+// main();
 
 export { getWordDefinition }
