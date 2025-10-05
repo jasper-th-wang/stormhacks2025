@@ -18,7 +18,9 @@ confirmButton.addEventListener("click", () => {
   chrome.runtime.sendMessage(
     {
       action: "textSelected",
-      text: selectedText,
+      word: selectedText,
+      paragraph: paragraph,
+      sentence: sentence,
     },
     (response) => {
       console.log("Message sent, response:", response);
@@ -29,7 +31,7 @@ confirmButton.addEventListener("click", () => {
 
 function getSentence(paragraph, word) {
   const sentences = paragraph.match(/[^.!?]+[.!?]+/g) || [];
-  return sentences.filter((s) => s.toLowerCase().includes(word.toLowerCase()));
+  return sentences.filter((s) => s.toLowerCase().includes(word.toLowerCase()))[0];
 }
 
 function getParagraph() {
