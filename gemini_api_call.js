@@ -1,8 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
-
-// The client gets the API key from the environment variable `GEMINI_API_KEY`.
-const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenAI(apiKey);
 
 /**
  * Get Word definition with context from Gemini AI
@@ -13,10 +8,19 @@ const genAI = new GoogleGenAI(apiKey);
  */
 
 async function getWordDefinition(word, sentence, paragraph) {
+
+    const API_KEY = "Your_API_Key";
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
     try {
-        const response = await genAI.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: `Please return the definition of the word: ${word}
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: `Please return the definition of the word: ${word}
 
         Use this sentence for context: ${sentence}
 
@@ -29,10 +33,19 @@ async function getWordDefinition(word, sentence, paragraph) {
 
         Relation to context:
 
-        20-30 word example sentence, not related to the source:`,
+        20-30 word example sentence, not related to the source:`
+                    }]
+                }]
+            })
         });
 
-        return response.text;
+        if (!response.ok) {
+            throw new Error(`APIrequest failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const text = data.candidates[0].content.parts[0].text;
+        return text;
 
     } catch (error) {
         console.error("Error getting defintion:", error);
