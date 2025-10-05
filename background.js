@@ -16,12 +16,12 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       sentence: message.sentence,
     });
 
+    // Process input
     const { definition, interpretation, example } = await getWordDefinition(
       message.word,
       message.sentence,
       message.paragraph,
     );
-    // TODO: put in source title and resource once available from sender
     const entry = makeEntry(
       message.word,
       message.sentence,
@@ -29,9 +29,17 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
       definition,
       interpretation,
       example,
-      "put source title here",
-      "put source resource, e.g. example.com here",
+      "put source title here", // TODO: get from message
+      "put source resource, e.g. example.com here", // TODO: get from message
     );
-    addToHistory(entry);
+    await addToHistory(entry);
+
+    // Send a message back that this worked
+    if (sender.tab?.id) {
+      chrome.tabs.sendMessage(sender.tab.id, {
+        action: "processingDone",
+        result: "ok",
+      });
+    }
   }
 });
