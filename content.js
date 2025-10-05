@@ -1,3 +1,4 @@
+// import nlp from "compromise";
 // This script runs on every webpage
 console.log("Content script loaded");
 // Create button
@@ -11,7 +12,9 @@ let selectedText = "";
 // When clicked, send text to extension
 confirmButton.addEventListener("click", () => {
   const paragraph = getParagraph();
-  console.log(paragraph);
+  const sentence = getSentence(paragraph, selectedText);
+  console.log(`paragraph: ${paragraph}`);
+  console.log(`sentence: ${sentence}`);
   chrome.runtime.sendMessage(
     {
       action: "textSelected",
@@ -23,6 +26,12 @@ confirmButton.addEventListener("click", () => {
   );
   hideConfirmButton();
 });
+
+// TODO: might break for more than one word?
+function getSentence(paragraph, word) {
+  const sentences = paragraph.match(/[^.!?]+[.!?]+/g) || [];
+  return sentences.filter((s) => s.toLowerCase().includes(word.toLowerCase()));
+}
 
 function getParagraph() {
   const selection = window.getSelection();
