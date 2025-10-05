@@ -33,12 +33,12 @@ export const addToHistory = async (entry) => {
 
 // Get all history entries
 export const getHistory = async () =>
-  (await chrome.storage.local.get({ history })).history;
+  (await chrome.storage.local.get({ history: [] })).history;
 
 // Remove history entry
 export const removeFromHistory = async (id) => {
   const history = await getHistory();
   chrome.storage.local.set({
-    history: history.filter((entry) => entry[ENTRY_KEYS.ID] != id),
+    history: history.filter((entry) => entry.id != id),
   });
 };

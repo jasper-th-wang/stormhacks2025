@@ -1,5 +1,9 @@
 import { getWordDefinition } from "./modules/gemini_api_call.js";
-import { addToHistory, makeEntry } from "./modules/history.js";
+import {
+  addToHistory,
+  removeFromHistory,
+  makeEntry,
+} from "./modules/history.js";
 
 // Listen for messages from content script
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
@@ -41,5 +45,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         entryId: entry.id,
       });
     }
+  } else if (message.action === "deleteEntry") {
+    removeFromHistory(message.entryId);
   }
 });

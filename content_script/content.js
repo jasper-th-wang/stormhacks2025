@@ -49,6 +49,7 @@ chrome.runtime.onMessage.addListener((message) => {
 
       // Example usage (for testing)
       wordModal.show({
+        id: entry["id"],
         word: entry["word"],
         definition: entry["definition"],
         interpretation: entry["interpretation"],
@@ -157,6 +158,15 @@ class WordModal {
     const closeBtn = this.overlay.querySelector(".word-modal-close");
     closeBtn.addEventListener("click", () => this.close());
 
+    const deleteBtn = this.overlay.querySelector(".word-modal-delete");
+    deleteBtn.addEventListener("click", () => {
+      chrome.runtime.sendMessage({
+        action: "deleteEntry",
+        entryId: this.overlay.dataset.id,
+      });
+      this.close();
+    });
+
     // ESC key to close
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.overlay.classList.contains("active")) {
@@ -213,6 +223,7 @@ class WordModal {
 
     // Show modal
     this.overlay.classList.add("active");
+    this.overlay.dataset.id = data.id;
     document.body.style.overflow = "hidden";
   }
 
