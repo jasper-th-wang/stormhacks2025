@@ -1,6 +1,6 @@
 {
-  "name": "Text Highlighter",
-  "description": "Highlight text and get definitions",
+  "name": "Contextify",
+  "description": "Gemini-powered English language learning tool",
   "version": "1.0",
   "manifest_version": 3,
   "action": {
