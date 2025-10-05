@@ -10,6 +10,8 @@ let selectedText = "";
 
 // When clicked, send text to extension
 confirmButton.addEventListener("click", () => {
+  const paragraph = getParagraph();
+  console.log(paragraph);
   chrome.runtime.sendMessage(
     {
       action: "textSelected",
@@ -21,6 +23,40 @@ confirmButton.addEventListener("click", () => {
   );
   hideConfirmButton();
 });
+
+function getParagraph() {
+  const selection = window.getSelection();
+  if (!selection.rangeCount) return null;
+
+  // Get the starting node of the selection
+  let node = selection.getRangeAt(0).startContainer;
+
+  // If it's a text node, get its parent element
+  if (node.nodeType === Node.TEXT_NODE) {
+    node = node.parentElement;
+  }
+
+  // Traverse up the DOM tree to find the closest paragraph-like element
+  while (node && node !== document.body) {
+    const tagName = node.tagName?.toLowerCase();
+
+    // Check for paragraph or paragraph-like elements
+    if (
+      tagName === "p" ||
+      tagName === "div" ||
+      tagName === "article" ||
+      tagName === "section" ||
+      tagName === "li"
+    ) {
+      return node.textContent.trim();
+    }
+
+    node = node.parentElement;
+  }
+
+  // Fallback: return the selected text if no paragraph found
+  return selection.toString().trim();
+}
 
 // Listen for text selection
 document.addEventListener("selectionchange", (e) => {
