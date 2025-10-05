@@ -27,7 +27,6 @@ confirmButton.addEventListener("click", () => {
   hideConfirmButton();
 });
 
-// TODO: might break for more than one word?
 function getSentence(paragraph, word) {
   const sentences = paragraph.match(/[^.!?]+[.!?]+/g) || [];
   return sentences.filter((s) => s.toLowerCase().includes(word.toLowerCase()));
