@@ -21,6 +21,30 @@
         display: none;
         padding-top: 20px;
       }
+
+      /* Style the history list divs as buttons.
+       * This is straight ChatGPT—haven't looked at it at all. */
+      .action {
+        padding: 10px 16px;
+        margin: 6px 0;
+        border-radius: 8px;
+        background-color: #f1f1f1;
+        cursor: pointer; /* shows the hand cursor */
+        user-select: none; /* prevents text highlight */
+        transition:
+          background-color 0.2s ease,
+          transform 0.1s ease;
+      }
+
+      .action:hover {
+        background-color: #e0e0e0; /* slightly darker on hover */
+        transform: translateY(-1px); /* tiny lift */
+      }
+
+      .action:active {
+        background-color: #d0d0d0; /* darker when clicked */
+        transform: translateY(0); /* reset lift */
+      }
     </style>
   </head>
   <body>
