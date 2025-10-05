@@ -16,7 +16,10 @@ chrome.storage.local.get({ history: [] }, async (result) => {
     const div = document.createElement("div");
     div.className = "action";
     div.addEventListener("click", () => {
-      chrome.tabs.sendMessage(tab.id, {action: "showModal", entryId: entry.id})
+      chrome.tabs.sendMessage(tab.id, {
+        action: "showModal",
+        entryId: entry.id,
+      });
     });
 
     const date = new Date(entry.date).toLocaleString("en-CA", {
