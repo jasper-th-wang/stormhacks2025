@@ -14,7 +14,7 @@
       "css": ["content_script/content.css"]
     }
   ],
-  "permissions": ["storage"],
+  "permissions": ["activeTab", "storage"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
