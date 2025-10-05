@@ -58,6 +58,24 @@
   transform: scale(1);
 }
 
+
+/* Delete Button */
+.word-modal-delete {
+  position: absolute;
+  top: 16px;
+  right: 48px;
+  background: transparent;
+  border: none;
+  color: #FF0000;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 /* Close Button */
 .word-modal-close {
   position: absolute;
