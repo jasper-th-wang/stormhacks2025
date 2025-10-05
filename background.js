@@ -37,8 +37,8 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     // Send a message back that this worked
     if (sender.tab?.id) {
       chrome.tabs.sendMessage(sender.tab.id, {
-        action: "processingDone",
-        result: "ok",
+        action: "showModal",
+        entryId: entry.id,
       });
     }
   }

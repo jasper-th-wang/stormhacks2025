@@ -33,21 +33,19 @@ confirmButton.addEventListener("click", () => {
 // selection message
 // TODO: use a proper display for the result. Not an alert!
 chrome.runtime.onMessage.addListener((message) => {
-  if (message.action === "processingDone") {
-    if (message.result === "ok") {
-      chrome.storage.local.get({ history: [] }, (result) => {
-        const lastEntry = result.history[result.history.length - 1];
-        const lines = [
-          `word: ${lastEntry.word}`,
-          `definition: ${lastEntry.definition}`,
-          `interpretation: ${lastEntry.interpretation}`,
-          `example sentence: ${lastEntry.example}`,
-        ];
-        alert(lines.join("\n\n"));
-      });
-    } else {
-      alert("Processing failed!");
-    }
+  if (message.action === "showModal") {
+    chrome.storage.local.get({ history: [] }, (result) => {
+      const entry = result.history.filter(
+        (entry) => (entry.id = message.id),
+      )[0];
+      const lines = [
+        `word: ${lastEntry.word}`,
+        `definition: ${lastEntry.definition}`,
+        `interpretation: ${lastEntry.interpretation}`,
+        `example sentence: ${lastEntry.example}`,
+      ];
+      alert(lines.join("\n\n"));
+    });
   }
 });
 
