@@ -3,7 +3,11 @@ chrome.storage.local.get({ history: [] }, async (result) => {
   const listDiv = document.getElementById("list");
 
   if (entryList.length === 0) {
-    listDiv.textContent = "No history";
+    const div = document.createElement("div");
+    div.textContent = "No history";
+    div.className = "no-history-msg";
+    listDiv.appendChild(div);
+
     return;
   }
 
